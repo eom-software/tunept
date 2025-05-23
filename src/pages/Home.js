@@ -287,8 +287,15 @@ function Home() {
             container
             spacing={3}
             sx={{
-              flexWrap: "nowrap",
-              overflowX: { xs: "auto", md: "visible" },
+              flexWrap: { xs: "wrap", md: "nowrap" },
+              justifyContent: "center",
+              overflowX: { md: "auto" },
+              msOverflowStyle: "none",
+              scrollbarWidth: "none",
+              "&::-webkit-scrollbar": {
+                display: "none",
+              },
+              pb: { md: 2 },
             }}
           >
             {features.map((feature, index) => (
@@ -298,27 +305,58 @@ function Home() {
                 sm={6}
                 md={3}
                 key={index}
-                sx={{ minWidth: { xs: "280px", md: "auto" } }}
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  px: { xs: 2, sm: 1.5, md: 1.5 },
+                  minWidth: { md: "280px" },
+                }}
               >
                 <MotionBox
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.2 }}
+                  sx={{
+                    width: "100%",
+                    maxWidth: { xs: "400px", md: "none" },
+                  }}
                 >
                   <FeatureCard>
                     <CardContent
-                      sx={{ p: 4, textAlign: "center", height: "100%" }}
+                      sx={{
+                        p: { xs: 3, sm: 4 },
+                        textAlign: "center",
+                        height: "100%",
+                      }}
                     >
-                      <Box sx={{ mb: 2 }}>{feature.icon}</Box>
+                      <Box
+                        sx={{
+                          mb: { xs: 1.5, sm: 2 },
+                          "& svg": {
+                            fontSize: { xs: 32, sm: 40 },
+                          },
+                        }}
+                      >
+                        {feature.icon}
+                      </Box>
                       <Typography
                         variant="h5"
                         component="h3"
                         gutterBottom
-                        sx={{ fontWeight: 600 }}
+                        sx={{
+                          fontWeight: 600,
+                          fontSize: { xs: "1.25rem", sm: "1.5rem" },
+                        }}
                       >
                         {feature.title}
                       </Typography>
-                      <Typography variant="body1" color="text.secondary">
+                      <Typography
+                        variant="body1"
+                        color="text.secondary"
+                        sx={{
+                          fontSize: { xs: "0.875rem", sm: "1rem" },
+                        }}
+                      >
                         {feature.description}
                       </Typography>
                     </CardContent>
@@ -354,23 +392,15 @@ function Home() {
             container
             spacing={3}
             sx={{
-              flexWrap: "nowrap",
-              overflowX: { xs: "auto", md: "visible" },
-              pb: { xs: 2, md: 0 }, // Add padding bottom on mobile for scrollbar
+              flexWrap: { xs: "wrap", md: "nowrap" },
+              justifyContent: "center",
+              overflowX: { md: "auto" },
+              msOverflowStyle: "none",
+              scrollbarWidth: "none",
               "&::-webkit-scrollbar": {
-                height: "8px",
+                display: "none",
               },
-              "&::-webkit-scrollbar-track": {
-                backgroundColor: "rgba(0,0,0,0.05)",
-                borderRadius: "4px",
-              },
-              "&::-webkit-scrollbar-thumb": {
-                backgroundColor: "rgba(0,0,0,0.2)",
-                borderRadius: "4px",
-                "&:hover": {
-                  backgroundColor: "rgba(0,0,0,0.3)",
-                },
-              },
+              pb: { md: 2 },
             }}
           >
             {testimonials.map((testimonial, index) => (
@@ -380,28 +410,56 @@ function Home() {
                 sm={6}
                 md={4}
                 key={index}
-                sx={{ minWidth: { xs: "280px", md: "auto" } }}
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  px: { xs: 2, sm: 1.5, md: 1.5 },
+                  minWidth: { md: "360px" },
+                }}
               >
                 <MotionBox
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.2 }}
+                  sx={{
+                    width: "100%",
+                    maxWidth: { xs: "400px", md: "none" },
+                  }}
                 >
                   <TestimonialCard>
                     <Stack spacing={2}>
                       <Box
-                        sx={{ display: "flex", alignItems: "center", gap: 2 }}
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 2,
+                        }}
                       >
                         <Avatar
                           src={testimonial.avatar}
                           alt={testimonial.name}
-                          sx={{ width: 56, height: 56 }}
+                          sx={{
+                            width: { xs: 48, sm: 56 },
+                            height: { xs: 48, sm: 56 },
+                          }}
                         />
                         <Box>
-                          <Typography variant="h6" sx={{ fontWeight: 600 }}>
+                          <Typography
+                            variant="h6"
+                            sx={{
+                              fontWeight: 600,
+                              fontSize: { xs: "1rem", sm: "1.25rem" },
+                            }}
+                          >
                             {testimonial.name}
                           </Typography>
-                          <Typography variant="body2" color="text.secondary">
+                          <Typography
+                            variant="body2"
+                            color="text.secondary"
+                            sx={{
+                              fontSize: { xs: "0.75rem", sm: "0.875rem" },
+                            }}
+                          >
                             {testimonial.role}
                           </Typography>
                         </Box>
@@ -411,8 +469,19 @@ function Home() {
                         readOnly
                         precision={0.5}
                         icon={<StarIcon fontSize="inherit" />}
+                        sx={{
+                          "& .MuiRating-icon": {
+                            fontSize: { xs: "1.25rem", sm: "1.5rem" },
+                          },
+                        }}
                       />
-                      <Typography variant="body1" color="text.secondary">
+                      <Typography
+                        variant="body1"
+                        color="text.secondary"
+                        sx={{
+                          fontSize: { xs: "0.875rem", sm: "1rem" },
+                        }}
+                      >
                         "{testimonial.comment}"
                       </Typography>
                     </Stack>
