@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Link as RouterLink, useLocation } from "react-router-dom";
 import {
   AppBar,
@@ -11,9 +11,7 @@ import {
   Button,
   MenuItem,
   useTheme,
-  useMediaQuery,
   Fade,
-  useScrollTrigger,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { styled, alpha } from "@mui/material/styles";
@@ -78,20 +76,19 @@ function Navbar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [scrolled, setScrolled] = useState(false);
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const location = useLocation();
 
-  const handleScroll = () => {
-    const isScrolled = window.scrollY > 20;
+  const handleScroll = useCallback(() => {
+    const isScrolled = window.scrollY > 50;
     if (isScrolled !== scrolled) {
       setScrolled(isScrolled);
     }
-  };
+  }, [scrolled]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [scrolled]);
+  }, [handleScroll]);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);

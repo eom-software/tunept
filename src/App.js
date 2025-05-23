@@ -2,8 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import { Box, useMediaQuery } from "@mui/material";
-import { alpha } from "@mui/material/styles";
+import { Box } from "@mui/material";
 
 // Components
 import Navbar from "./components/layout/Navbar";
@@ -155,8 +154,6 @@ const theme = createTheme({
 });
 
 function App() {
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />

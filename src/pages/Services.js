@@ -10,11 +10,8 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-  useTheme,
-  useMediaQuery,
   Button,
   Stack,
-  Chip,
 } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
 import { motion } from "framer-motion";
@@ -130,9 +127,6 @@ const services = [
 ];
 
 function Services() {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-
   return (
     <Box sx={{ bgcolor: "background.paper", py: { xs: 6, md: 10 } }}>
       <Container maxWidth="xl">
@@ -194,13 +188,33 @@ function Services() {
         </Box>
 
         {/* Services Grid */}
-        <Grid container spacing={4}>
+        <Grid
+          container
+          spacing={4}
+          justifyContent="center"
+          sx={{
+            maxWidth: "1200px",
+            mx: "auto",
+            px: { xs: 2, sm: 3, md: 4 },
+          }}
+        >
           {services.map((service, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              key={index}
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
               <MotionBox
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
+                sx={{ width: "100%", maxWidth: "360px" }}
               >
                 <ServiceCard>
                   <CardContent sx={{ p: 4, height: "100%" }}>
